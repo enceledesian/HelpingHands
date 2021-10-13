@@ -1,0 +1,28 @@
+﻿@model HelpingHands.Models.MeterialItems
+
+    <h2 class="header">
+        Are you sure you want to delete this?
+    </h2>
+    <div>
+        <h2 style="text-align: center; font-weight: bold; color: #FF4500;">>Remove Category</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.MererialItemName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MererialItemName)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default btn" /> |
+            </div>
+        }
+    </div>

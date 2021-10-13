@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HelpingHands.Models.Volunteer>
+
+@{
+    ViewBag.Title = "View Volunteer";
+}
+
+<h2 class="header">View Volunteer's Details</h2>
+@if (ViewBag.DeleteMessage != null)
+{
+    <div class="alert alert-success">
+        <p>@ViewBag.DeleteMessage</p>
+    </div>
+}
+@if (ViewBag.toalCount != 0)
+{
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark" style="background-color: #FF4500;color:#ffffff;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MobileNumber)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VolunteerId }, new { style = "font-weight:bold;font-size:16px;color:#337ab7 !important;vertical-align-top;" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VolunteerId }, new { style = "font-weight:bold;font-size:16px;color:#337ab7 !important;vertical-align:top;" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+}
+else
+{
+    <h4 style="margin-left:45%; font-weight: bold; color: #FF4500;">No record found</h4>
+
+}

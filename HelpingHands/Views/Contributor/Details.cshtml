@@ -1,0 +1,100 @@
+﻿@model HelpingHands.Models.ViewModels.RequirementViewModel
+
+@{
+    ViewBag.Title = "detail";
+}
+
+@using (Html.BeginForm("Donate", "Contributor", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+    @Html.AntiForgeryToken()
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            <p>@ViewBag.ErrorMessage</p>
+        </div>
+    }
+    <div>
+        <h4><b>Full Profile Details</b></h4>
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model => model.DonationRequirementId)
+            @if (Model.DeliveryStatus == "In Progress")
+            {
+                <div class="alert alert-info" role="alert">
+                    Someone already given.
+                </div>
+            }
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td class="tdstyle"><b>Full Name</b></td>
+                        <td>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</td>
+
+                    </tr>
+                    <tr>
+                        <td class="tdstyle"><b>@Html.DisplayNameFor(model => model.Age)</b></td>
+                        <td>@Html.DisplayFor(model => model.Age)</td>
+
+                    </tr>
+                    <tr>
+                        <td class="tdstyle"><b>@Html.DisplayNameFor(model => model.MaterialItem)</b></td>
+                        <td>@Html.DisplayFor(model => model.MaterialItem)</td>
+
+                    </tr>
+                    <tr>
+                        <td class="tdstyle"><b>@Html.DisplayNameFor(model => model.Description)</b></td>
+                        <td>@Html.DisplayFor(model => model.Description)</td>
+
+                    </tr>
+                    <tr>
+                        <td class="tdstyle"><b>@Html.DisplayNameFor(model => model.Address)</b></td>
+                        <td>@Html.DisplayFor(model => model.Address)</td>
+
+                    </tr>
+                    <tr>
+                        <td class="tdstyle"><b>@Html.DisplayNameFor(model => model.DeliveryDate)</b></td>
+                        <td>@Html.DisplayFor(model => model.DeliveryDate)</td>
+
+                    </tr>
+                    <tr>
+                        <td class="tdstyle"><b>@Html.DisplayNameFor(model => model.DeliveryStatus)</b></td>
+                        <td>@Html.DisplayFor(model => model.DeliveryStatus)</td>
+
+                    </tr>
+                    @if (Model.DeliveryStatus == "Available")
+                    {
+                        <tr>
+                            <td class="tdstyle"><b>@Html.Label("Recipient Info")</b></td>
+                            <td>
+                                @Html.RadioButtonFor(model => model.RecipientInfo, "Self", new { @class = "custom-control-input" })Self
+                                @Html.RadioButtonFor(model => model.RecipientInfo, "Volunteer")Volunteer
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.DeliveryStatus == "Available")
+                    {
+                        <tr>
+                            <td colspan="3"><button type="submit" class="btn btn-primary">Donate Now</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+
+
+        </dl>
+    </div>
+}
+
+
+
+<div>
+    <form method="post" asp-action="Index" asp-controller="Contributor">
+        <button type="submit" class="btn btn-primary">Back to List</button>
+    </form>
+</div>

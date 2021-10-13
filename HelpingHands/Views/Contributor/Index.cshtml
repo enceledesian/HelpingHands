@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HelpingHands.Models.ViewModels.RequirementViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container" style="width: 100%; padding: 0px;">
+    @Html.Partial("_ImageSlidercshtml")
+    <div class="row">
+        <h2 class="header">Donation</h2>
+        @if (ViewBag.toalCount != 0)
+        {
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-2">
+                                <img class="card-img" src="~/images/@item.Photo" alt="Suresh Dasari Card" style="width:60%;">
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="card-body">
+                                    <div class="text">
+                                        <span><b>Full Name:</b> @item.FirstName @item.LastName</span><br/>
+                                        <span><b>Address:</b> @item.Address</span><br/>
+                                        <span><b>Age:</b> @item.Age</span><br/>
+                                        <span><b>Category:</b> @item.CategoryName</span><br/>
+                                        <span><b>Description:</b> @item.Description</span><br/>
+                                        <input type="submit" value="Donate" id="Submit" class="btn btn-default buttonCreate btnDonate" onclick="location.href='@Url.Action("Contact", "Home")'" />
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+
+            }
+        }
+        else
+        {
+            <h4 class="header">No record found</h4>
+        }
+    </div>
+</div>
+
+

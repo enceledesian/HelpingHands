@@ -1,0 +1,91 @@
+﻿@model HelpingHands.Models.Volunteer
+
+    <div class="container" style="width: 100%; padding: 0px;">
+        @Html.Partial("_ImageSlidercshtml")
+        <h2 class="header">@ViewBag.Title</h2>
+    </div>
+
+    @using (Html.BeginForm("Create", "Volunteer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger" style="text-align:center;">
+                <p>@ViewBag.ErrorMessage</p>
+            </div>
+        }
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success" style="text-align:center;">
+                <p>@ViewBag.Message</p>
+            </div>
+        }
+        <h2 style="text-align: center; font-weight: bold; color: #FF4500;">Become A Volunteer</h2>
+        <hr />
+        <div class="form-horizontal"  style="margin-left:30%;">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.RadioButtonFor(model => model.Gender, "Male", new { @class = "custom-control-input" })Male
+                    @Html.RadioButtonFor(model => model.Gender, "Female", new { @class = "custom-control-input" })Female
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" id="Add" class="btn btn-default btn" style="margin-left:0px !important;" />
+
+                </div>
+            </div>
+        </div>
+    }
+
+    @*<div>
+            <form method="post" asp-action="Index" asp-controller="Volunteer">
+                <button type="submit" class="btn btn-primary">Back to List</button>
+            </form>
+        </div>*@
+

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HelpingHands.Models.ViewModels.RequirementViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="header">Donation Requirement List</h2>
+
+<input type="submit" value="Add Donation Requirement" id="Submit" class="btn btn-default buttonAdd" style="margin:15px;" onclick="location.href='@Url.Action("Create", "Donation")'" />
+
+
+@if (ViewBag.toalCount != 0)
+{
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-sm-2">
+                        @if (item.Photo != null)
+                        {
+                            <img class="card-img" src="~/images/@item.Photo" style="width:60%">
+                        }
+                        else
+                        {
+                            <img class="card-img" src="~/images/defaultUser.png" style="width:100%">
+                        }
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="card-body">
+                            <div class="text">
+                                <span><b>Full Name:</b> @item.FirstName @item.LastName</span><br />
+                                <span><b>Address:</b> @item.Address</span><br />
+                                <span><b>Age:</b> @item.Age</span><br />
+                                <span><b>Category:</b> @item.CategoryName</span><br/>
+                                <span><b>Description:</b> @item.Description</span><br />
+                                @Html.ActionLink("Edit", "Edit", new { id = item.DonationRequirementId }, new { style = "font-weight:bold;font-size:20px;color:#337ab7 !important;" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.DonationRequirementId }, new { style = "font-weight:bold;font-size:20px;color:#337ab7 !important;" })
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+
+    }
+}
+else
+{
+    <h4 class="header" style="margin-left:20% !important;">No record found</h4>
+}
+
+
+
+
+

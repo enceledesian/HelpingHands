@@ -1,7 +1,6 @@
 # HelpingHands
-A project in which people can add their request for someone in need and people who want to join and help can find that request according to location and contribute.
 
-In this Helping Hands Website Users can be applied to become a volunteer and also see all the donation requirement details.
+A project in which people Users can be applied to become a volunteer and also see all the donation requirement details.
 
 **Website URL** : http://helpinghands.azurewebsites.net
 

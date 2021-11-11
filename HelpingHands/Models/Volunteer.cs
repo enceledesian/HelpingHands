@@ -28,9 +28,10 @@ namespace HelpingHands.Models
         public string Gender { get; set; }
         public int? Age { get; set; }
         [StringLength(50)]
-        [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
-                   ErrorMessage = "Entered phone format is not valid.")]
+        [Required(ErrorMessage = "Please enter contact number")]
+        //[DataType(DataType.PhoneNumber)]
+        //[RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$",
+        //           ErrorMessage = "Entered phone format is not valid.")]
         [DisplayName("Contact Number")]
         public string MobileNumber { get; set; }
         public bool? IsActive { get; set; }

@@ -38,6 +38,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Volunteer" asp-action="Create">BECOME A VOLUNTEER</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Contributor" asp-action="Index">MAKE A DONATION</a>
+                                </li>
                             }
                             @if (signInManager.IsSignedIn(User))
                             {
@@ -47,16 +50,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Volunteer" asp-action="Index">VOLUNTEER</a>
                                 </li>
-                            }
-                            @if (!signInManager.IsSignedIn(User))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Contributor" asp-action="Index">MAKE A DONATION</a>
-                                </li>
-                            }
-
-                            @if (signInManager.IsSignedIn(User))
-                            {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Donation" asp-action="Index">POST REQUIREMENT</a>
                                 </li>
@@ -74,8 +67,6 @@
                             {
                                 <li class="nav-item" style="display:inline-flex;">
                                     <b class="nav-link text-dark fontcolor" style="padding-top:15px !important;padding:10px 15px;">@User.Identity.Name</b>@Html.ActionLink("LOGOUT", "Logout", "Account", null, new { style = "font-weight:bold;padding-top:15px !important;" })
-
-
                                 </li>
 
                             }
@@ -84,9 +75,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Account" asp-action="Login" >LOGIN</a>
                                 </li>
-                                @*<li class="nav-item">
+                                <li class="nav-item">
                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Account" asp-action="Register">REGISTER</a>
-                </li>*@
+                </li>
                             }
 
                         </ul>

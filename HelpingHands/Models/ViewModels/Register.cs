@@ -15,10 +15,10 @@ namespace HelpingHands.Models.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter mobile number")]
-        [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
-                   ErrorMessage = "Entered phone format is not valid.")]
-        [DisplayName("Mobile Number")]
+        //[DataType(DataType.PhoneNumber)]
+        //[RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$",
+        //           ErrorMessage = "Entered phone format is not valid.")]
+        [DisplayName("Contact Number")]
         public string MobileNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter full name")]

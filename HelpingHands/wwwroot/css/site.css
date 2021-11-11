@@ -153,6 +153,12 @@ body {
     border: 0px !important;
     border-radius: 0px !important;
 }
+.required::after {
+    content: " *";
+    font-weight: bold;
+    color: red;
+}
+
 
 
 

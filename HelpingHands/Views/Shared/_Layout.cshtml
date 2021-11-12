@@ -38,11 +38,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Volunteer" asp-action="Create">BECOME A VOLUNTEER</a>
                                 </li>
+                            }
+                            @if (signInManager.IsSignedIn(User) && User.IsInRole("User"))
+                            {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Contributor" asp-action="Index">MAKE A DONATION</a>
                                 </li>
                             }
-                            @if (signInManager.IsSignedIn(User))
+                            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Category" asp-action="Index">CATEGORY</a>
@@ -73,11 +76,11 @@
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Account" asp-action="Login" >LOGIN</a>
+                                    <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Account" asp-action="Login">LOGIN</a>
                                 </li>
                                 <li class="nav-item">
-                    <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Account" asp-action="Register">REGISTER</a>
-                </li>
+                                    <a class="nav-link text-dark fontcolor" asp-area="" asp-controller="Account" asp-action="Register">REGISTER</a>
+                                </li>
                             }
 
                         </ul>
@@ -88,7 +91,7 @@
 
 
         </div>
-        
+
     </header>
     <div class="container" style="width: 100%; padding:0px !important;">
         <main role="main" class="pb-3">

@@ -13,10 +13,12 @@ namespace HelpingHands.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager)
+        private readonly RoleManager<IdentityRole> roleManager;
+        public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager, RoleManager<IdentityRole> _roleManager)
         {
             this.userManager = _userManager;
             this.signInManager = _signInManager;
+            this.roleManager = _roleManager;
         }
         [HttpGet]
         [AllowAnonymous]
@@ -30,11 +32,20 @@ namespace HelpingHands.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool isRoleExists = await roleManager.RoleExistsAsync("User");
+                if(!isRoleExists)
+                {
+                    // Create User Role
+                    var userRole = new IdentityRole();
+                    userRole.Name = "User";
+                    await roleManager.CreateAsync(userRole);
+                }
                 var user = new IdentityUser { UserName = model.Email, Email = model.FullName,PhoneNumber = model.MobileNumber };
                 var userResult = await userManager.CreateAsync(user, model.Password);
 
                 if (userResult.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, "User");
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

@@ -28,7 +28,7 @@ namespace HelpingHands.Controllers
         /// Get Volunteer List
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Index()
         {
             var volunteerList = await _dbContext.Volunteer.Where(x=>x.IsActive == true).ToListAsync();

@@ -1,6 +1,8 @@
 using AutoMapper;
 using HelpingHands.AutoMapper;
 using HelpingHands.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +37,18 @@ namespace HelpingHands
             //{
             //    o.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
             //});
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+.AddCookie()
+.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+{
+    options.ClientId = Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+});
+
             services.AddMvc();
             var connection = Configuration.GetConnectionString("HelpingHandDatabase");
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));

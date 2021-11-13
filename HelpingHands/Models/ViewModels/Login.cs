@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -15,5 +16,9 @@ namespace HelpingHands.Models.ViewModels
         [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string ReturnUrl { get; set; }
+
+        public IList<AuthenticationScheme> SocialLogins { get; set; }
+
     }
 }

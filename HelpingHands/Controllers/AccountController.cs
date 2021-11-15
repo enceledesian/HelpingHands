@@ -27,6 +27,11 @@ namespace HelpingHands.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// User can register with basic details
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register(Register model)
@@ -70,6 +75,11 @@ namespace HelpingHands.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        /// <summary>
+        /// Get External Social Login Details
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl)
         {
@@ -87,6 +97,11 @@ namespace HelpingHands.Controllers
                 return View("Error");
             }
         }
+        /// <summary>
+        /// User can login with id and password
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(Login loginModel)
@@ -110,6 +125,12 @@ namespace HelpingHands.Controllers
 
             return View(loginModel);
         }
+        /// <summary>
+        /// Redirect to Google
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         public IActionResult GoogleLogin(string provider, string returnUrl)
@@ -128,6 +149,11 @@ namespace HelpingHands.Controllers
                 return View("Error");
             }
         }
+        /// <summary>
+        /// External Google Login
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public async Task<IActionResult> GoogleCallback(string returnUrl = null)
         {

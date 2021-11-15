@@ -43,14 +43,22 @@ namespace HelpingHands.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(MeterialItems model)
         {
-            if(!ModelState.IsValid)
+            try
             {
-                return View();
+                if (!ModelState.IsValid)
+                {
+                    return View();
+                }
+                model.IsActive = true;
+                _dbContext.MeterialItems.Add(model);
+                await _dbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-            model.IsActive = true;
-            _dbContext.MeterialItems.Add(model);
-            await _dbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
         }
         [Authorize]
         /// <summary>

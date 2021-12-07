@@ -12,6 +12,9 @@ namespace UnitTest_HelpingHands
 {
     public class VolunteerUnitTest
     {
+        /// <summary>
+        /// This method is used to get all the volunteers
+        /// </summary>
         [Fact(DisplayName = "Get all the Volunteers")]
         public void Index_ReturnsAViewResult_WithAListOfVolunteer()
         {
@@ -68,6 +71,26 @@ namespace UnitTest_HelpingHands
                 Assert.Equal("Thank You For Become A Volunteer", volunteerresult.ViewData["Message"]);
             }
             
+        }
+        /// <summary>
+        /// This method used to Add new volunteer with null Object
+        /// </summary>
+        /// <returns></returns>
+        [Fact(DisplayName = "Add New Volunteer with null object throw Exception")]
+        public async Task Add_Volunteer_ThrowException()
+        {
+            // Arrange 
+            using (var context = TestDbContext.GetTestDbContext())
+            using (var volunteercontroller = new VolunteerController(context))
+            {
+                // Act
+                var volunteerrequest = await volunteercontroller.Create(null) as ViewResult;
+
+                // Assert
+                Assert.NotNull(volunteerrequest);
+                Assert.Equal("Something Went Wrong ! Try Again", volunteerrequest.ViewData["ErrorMessage"]);
+            }
+
         }
         /// <summary>
         /// Add Volunteer Test Data

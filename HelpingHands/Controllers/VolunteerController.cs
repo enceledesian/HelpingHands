@@ -29,9 +29,9 @@ namespace HelpingHands.Controllers
         /// </summary>
         /// <returns></returns>
         [Authorize(Roles ="Admin")]
-        public async Task<IActionResult> Index()
+        public ViewResult Index()
         {
-            var volunteerList = await _dbContext.Volunteer.Where(x=>x.IsActive == true).ToListAsync();
+            var volunteerList = _dbContext.Volunteer.Where(x=>x.IsActive == true).ToList();
             ViewBag.toalCount = volunteerList.Count;
             return View(volunteerList);
         }
@@ -55,7 +55,7 @@ namespace HelpingHands.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View();
+                    return BadRequest(ModelState);
                 }
                 volunteer.IsActive = true;
                 _dbContext.Volunteer.Add(volunteer);
